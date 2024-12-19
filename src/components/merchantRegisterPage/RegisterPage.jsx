@@ -23,8 +23,7 @@ const MerchantRegisterPage = () => {
         address: ""
     });
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false); // 用於控制按鈕的狀態
-
+    const [loading, setLoading] = useState(false);
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
@@ -60,8 +59,9 @@ const MerchantRegisterPage = () => {
 
         setError("");
         if (currentStep === 1 && formData.uploadImage) {
-            // 若是上傳圖片，先上傳圖片到 Imgur
-            setLoading(true); // 開始加載
+            setLoading(true);
+            console.log("圖片上傳中");
+            
             const imageUrl = await uploadImageToImgur(formData.uploadImage);
             if (imageUrl) {
                 setFormData({ ...formData, uploadImage: imageUrl });
@@ -96,7 +96,7 @@ const MerchantRegisterPage = () => {
                 <button
                     onClick={handleContinue}
                     className="fixed bottom-[2rem] left-[15%] w-[70%] bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition"
-                    disabled={loading} // 按鈕禁用狀態
+                    disabled={loading}
                 >
                     {loading ? "上傳中..." : continueBtn[currentStep]}
                 </button>

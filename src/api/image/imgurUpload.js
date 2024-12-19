@@ -12,6 +12,7 @@ const uploadImageToImgur = async (file) => {
             method: "POST",
             headers: {
                 Authorization: `Client-ID ${clientId}`,
+                Accept: "application/json",
             },
             body: formData,
         });
